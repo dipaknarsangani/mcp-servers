@@ -1,14 +1,18 @@
 import os
+import sys
 import base64
 import secrets
 from datetime import datetime, timedelta, date
+from pathlib import Path
 from typing import Optional
 from urllib.parse import urlencode
 
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv()
+_HERE = Path(__file__).parent.resolve()
+sys.path.insert(0, str(_HERE))
+load_dotenv(dotenv_path=_HERE / ".env")
 
 from token_store import TokenStore
 
