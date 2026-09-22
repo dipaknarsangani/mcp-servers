@@ -1,12 +1,17 @@
 import asyncio
 import os
+import sys
 from pathlib import Path
 from typing import Optional
+
+# Always resolve modules relative to this file, regardless of cwd
+_HERE = Path(__file__).parent.resolve()
+sys.path.insert(0, str(_HERE))
 
 from dotenv import load_dotenv
 from mcp.server.mcpserver import MCPServer
 
-load_dotenv()
+load_dotenv(dotenv_path=_HERE / ".env")
 
 from token_store import TokenStore
 import schwab_client as sc
